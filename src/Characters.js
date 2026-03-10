@@ -20,15 +20,15 @@ function Characters() {
 function getSpeciesColor(species) {
   switch (species) {
     case "human":
-      return "#1f3b73";
+      return "#1f3b73"; //Blue
     case "droid":
-      return "#555";
+      return "#555"; //Grey
     case "wookiee":
       return "#6b3f1d";
     case "yoda's species":
       return "#2d6a4f";
     default:
-      return "#1f1f1f";
+      return "#1f1f1f"; //dadrk
   }
 }
 
@@ -51,14 +51,27 @@ function getSpeciesColor(species) {
   ))}
 </div>
       <br/>
+      <div className="pagination">
 
-      <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-        Previous
-      </button>
+  <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+    {"<"}
+  </button>
 
-      <button onClick={() => setPage(page + 1)}>
-        Next
-      </button>
+  {[...Array(9)].map((_, i) => (
+    <button
+      key={i}
+      className={page === i + 1 ? "active-page" : ""}
+      onClick={() => setPage(i + 1)}
+    >
+      {i + 1}
+    </button>
+  ))}
+
+  <button onClick={() => setPage(page + 1)} disabled={page === 9}>
+    {">"}
+  </button>
+
+</div>
 <Modal person={selected} close={() => setSelected(null)} />
     </div>
   );
